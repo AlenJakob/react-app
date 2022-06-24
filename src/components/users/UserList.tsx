@@ -12,9 +12,10 @@ export const UserList = (props: UserListProps) => {
 	const images = props.pictures !== undefined ? props.pictures : [];
 
 	const mergedObjects = mergeTwoArraysOfObjects(users, images);
+
 	return (
 		<>
-			<div className="columns is-flex-wrap-wrap p-6 container mx-auto">
+			<div className="columns is-flex-wrap-wrap  container mx-auto">
 				{mergedObjects.map((user, index) => (
 					<div className="column is-3" key={index}>
 						<UserItem user={user}></UserItem>

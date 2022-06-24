@@ -4,7 +4,7 @@ import { Navbar } from "./components/navbar/Navbar";
 export const App = () => {
 	return (
 		<>
-			<div className="App">
+			<div className="App container">
 				<Navbar />
 			</div>
 		</>

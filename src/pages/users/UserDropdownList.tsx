@@ -13,7 +13,6 @@ export const UserDropdownList = <T,>({
 	const toggleMenu = () => {
 		setOpen((open) => !open);
 	};
-	console.log(list);
 	const parsedList = Object.entries(list);
 	return (
 		<span
@@ -23,7 +22,7 @@ export const UserDropdownList = <T,>({
 		>
 			<button
 				onClick={toggleMenu}
-				className={`button is-medium is-warning is-fullwidth is-justify-content-space-between`}
+				className={`button is-medium is-link is-fullwidth is-justify-content-space-between`}
 			>
 				<span>{title}</span>
 				<i
@@ -38,12 +37,12 @@ export const UserDropdownList = <T,>({
 				}`}
 			>
 				<ul>
-					{parsedList.map((item, idx) => (
+					{parsedList.map(([name, value], idx) => (
 						<li
 							className="panel-block is-justify-content-left has-text-left"
 							key={idx}
 						>
-							{item[0]}: {item[1]}
+							{name}: {value}
 						</li>
 					))}
 				</ul>

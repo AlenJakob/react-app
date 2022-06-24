@@ -18,19 +18,27 @@ export const UserDetails = () => {
 	if (user && image) {
 		const userInfo = mergeTwoObject(user, image);
 
-		const { name, email, picture, address, company } = userInfo;
+		const { name, email, picture, address, company, phone, website } =
+			userInfo;
 		const { large, thumbnail } = picture;
 		const { geo, ...street } = address;
-		const parseStreet = Object.entries(street);
-		const parseCompany = Object.entries(company);
-		// console.log(parseStreet);
-		// console.log(parseCompany);
+
+		const userBasicInfo = {
+			name: name,
+			website: website,
+			email: email,
+			phone: phone,
+		};
 
 		return (
-			<div className="card mt-6 mx-auto column is-3">
-				<div className="card-image">
-					<figure className="image is-4by3">
-						<img src={large} alt="Placeholder image1" />
+			<div className="card mt-6 mx-auto column is-5">
+				<div className="card-image p-5 is-flex is-justify-content-center">
+					<figure className="image is-256x256">
+						<img
+							className="is-rounded"
+							src={large}
+							alt="Placeholder image1"
+						/>
 					</figure>
 				</div>
 				<div className="card-content">
@@ -47,6 +55,7 @@ export const UserDetails = () => {
 							</p>
 						</div>
 					</div>
+					<UserDropdownList list={userBasicInfo} title="General" />
 					<UserDropdownList list={street} title="Address" />
 					<UserDropdownList list={company} title="Company" />
 				</div>

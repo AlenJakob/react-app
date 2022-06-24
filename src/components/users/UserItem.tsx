@@ -5,16 +5,22 @@ interface UserItemProps {
 	user: User;
 }
 
-export const UserItem = (props: UserItemProps) => {
-	const { name, id, website, email, address, picture } = props.user;
+export const UserItem = ({ user }: UserItemProps) => {
+	console.log(user);
+
+	const { name, id, website, email, address, picture } = user;
 	const { geo, ...rest } = address;
 	const getLargePicture = picture !== undefined ? picture.large : "";
 	return (
 		<>
-			<div className="card">
-				<div className="card-image">
-					<figure className="image is-3by2">
-						<img src={getLargePicture} alt="Placeholder image1" />
+			<div className="card box">
+				<div className="card-image is-flex is-justify-content-center">
+					<figure className="image is-128x128 mb-4">
+						<img
+							className="is-rounded"
+							src={getLargePicture}
+							alt="Placeholder image1"
+						/>
 					</figure>
 				</div>
 				<div className="card-content">
@@ -22,21 +28,15 @@ export const UserItem = (props: UserItemProps) => {
 						<div className="media-content">
 							<ul className="menu-list">
 								<div className="tags has-addons columns">
-									<span className="tag is-info is-light is-large column mb-4">
+									<b className="tag is-link is-light is-large column mb-4">
 										{name}
-									</span>
+									</b>
 								</div>
-								<div className="tags has-addons is-justify-content-center">
-									<span
-										className="tag is-link is-medium is-light"
-										title={website}
-									>
+								<div className="columns is-flex-direction-column">
+									<span className="column " title={website}>
 										{website}
 									</span>
-									<span
-										className="tag ml-1 is-link is-medium is-light"
-										title={email}
-									>
+									<span className="column" title={email}>
 										{email}
 									</span>
 								</div>
@@ -45,7 +45,9 @@ export const UserItem = (props: UserItemProps) => {
 					</div>
 				</div>
 				<Link to={`/user/${id}`}>
-					<button className="button is-link m-4">Show Details</button>
+					<button className="button is-medium is-link is-outlined my-4 is-rounded">
+						Show Details
+					</button>
 				</Link>
 			</div>
 		</>

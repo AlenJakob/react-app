@@ -5,9 +5,11 @@ import { mergeTwoObject } from "../../services/helpers";
 import { fetchUser, fetchImage } from "../../services/fetchData";
 import "./UsersDetails.scss";
 import { UserDropdownList } from "./UserDropdownList";
+
 export const UserDetails = () => {
 	const { id } = useParams();
 	const userId = id ? id : 0;
+
 	const { data: user } = useQuery<User>(["user", id], () =>
 		fetchUser(String(userId))
 	);
@@ -16,10 +18,13 @@ export const UserDetails = () => {
 	if (user && image) {
 		const userInfo = mergeTwoObject(user, image);
 
-		const { name, email, picture, address } = userInfo;
+		const { name, email, picture, address, company } = userInfo;
 		const { large, thumbnail } = picture;
 		const { geo, ...street } = address;
-		console.log(street, "address");
+		const parseStreet = Object.entries(street);
+		const parseCompany = Object.entries(company);
+		// console.log(parseStreet);
+		// console.log(parseCompany);
 
 		return (
 			<div className="card mt-6 mx-auto column is-3">
@@ -42,7 +47,8 @@ export const UserDetails = () => {
 							</p>
 						</div>
 					</div>
-					<UserDropdownList list={street} title="title" />
+					<UserDropdownList list={street} title="Address" />
+					<UserDropdownList list={company} title="Company" />
 				</div>
 			</div>
 		);

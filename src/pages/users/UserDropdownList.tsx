@@ -1,26 +1,26 @@
 import { useState } from "react";
 
-interface UserDropdownListProps {
-	list: UserDropdownProps;
+interface UserDropdownListProps<T> {
+	list: T;
+	title: string;
 }
 
-interface UserDropdownProps {
-	street: string;
-	suite: string;
-	city: string;
-	zipcode: string;
-}
-export const UserDropdownList = (
-	{ list }: UserDropdownListProps,
-	title: string
-) => {
-	const { street, suite, city, zipcode } = list;
+export const UserDropdownList = <T,>({
+	list,
+	title,
+}: UserDropdownListProps<T>) => {
 	const [open, setOpen] = useState(false);
 	const toggleMenu = () => {
-		setOpen(!open);
+		setOpen((open) => !open);
 	};
+	console.log(list);
+	const parsedList = Object.entries(list);
 	return (
-		<div>
+		<span
+			className={`panel-container ${
+				open ? "panel-container__resize" : ""
+			}`}
+		>
 			<button
 				onClick={toggleMenu}
 				className={`button is-medium is-warning is-fullwidth is-justify-content-space-between`}
@@ -33,18 +33,21 @@ export const UserDropdownList = (
 				></i>
 			</button>
 			<div
-				className={`panel panel__list ${open ? "panel__is-open" : ""}`}
+				className={`panel panel__list ${
+					open ? "panel__is-open" : "panel__is-close"
+				}`}
 			>
 				<ul>
-					<li className="panel-block">
-						{street} {suite}
-					</li>
-					<li className="panel-block">
-						{city}, {zipcode}
-					</li>
-					<li className="panel-block"></li>
+					{parsedList.map((item, idx) => (
+						<li
+							className="panel-block is-justify-content-left has-text-left"
+							key={idx}
+						>
+							{item[0]}: {item[1]}
+						</li>
+					))}
 				</ul>
 			</div>
-		</div>
+		</span>
 	);
 };

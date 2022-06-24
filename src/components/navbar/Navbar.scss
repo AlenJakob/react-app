@@ -1,0 +1,30 @@
+$container-with: 1000px;
+$link-color: #363636;
+
+.navbar {
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: $container-with;
+
+	&__list {
+		display: flex;
+	}
+
+	&__list-item {
+		margin-right: 16px;
+		list-style: none;
+
+		& a:hover {
+			color: $link-color;
+		}
+	}
+
+	&__list-link {
+		text-decoration: none;
+		color: $link-color;
+		font-size: 16px;
+		text-transform: uppercase;
+	}
+}

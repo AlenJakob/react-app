@@ -1,0 +1,14 @@
+.panel {
+
+
+	transition: max-height 1s;
+	overflow: hidden;
+	transform: scaleY(0);
+	transform-origin: top;
+	transition: transform 0.26s ease;
+
+	&__is-open {
+		transform: scaleY(1);
+	}
+
+}

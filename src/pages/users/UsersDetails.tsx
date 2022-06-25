@@ -5,6 +5,7 @@ import { mergeTwoObject } from "../../services/helpers";
 import { fetchUser, fetchImage } from "../../services/fetchData";
 import "./UsersDetails.scss";
 import { UserDropdownList } from "./UserDropdownList";
+import { UserMap } from "../../components/users/map/UserMap";
 
 export const UserDetails = () => {
 	const { id } = useParams();
@@ -58,6 +59,7 @@ export const UserDetails = () => {
 					<UserDropdownList list={userBasicInfo} title="General" />
 					<UserDropdownList list={street} title="Address" />
 					<UserDropdownList list={company} title="Company" />
+					<UserMap geo={geo}></UserMap>
 				</div>
 			</div>
 		);

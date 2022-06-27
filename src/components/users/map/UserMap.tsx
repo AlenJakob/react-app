@@ -3,14 +3,6 @@ import { LatLngTuple } from "leaflet";
 import L from "leaflet";
 import "./UserMap.scss";
 
-// const iconPerson = new L.Icon({
-// 	iconUrl: require("../img/marker-pin-person.svg"),
-// 	iconRetinaUrl: require("../img/marker-pin-person.svg"),
-
-// 	iconSize: new L.Point(60, 75),
-// 	className: "leaflet-div-icon",
-// });
-
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
@@ -29,9 +21,8 @@ interface UserMapProps {
 }
 
 export const UserMap = ({ geo }: UserMapProps) => {
-	console.log(geo);
 	const { lat, lng } = geo;
-	const defaultLatLng: LatLngTuple = [Number(lat), Number(lng)];
+	const defaultLatLng: LatLngTuple = [Number(lng), Number(lat)];
 	return (
 		<>
 			<div>

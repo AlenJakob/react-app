@@ -24,6 +24,8 @@ export const UserDetails = () => {
 		const { large, thumbnail } = picture;
 		const { geo, ...street } = address;
 
+		// Map users and change Fake geolocation to better one
+
 		const userBasicInfo = {
 			name: name,
 			website: website,

@@ -6,8 +6,6 @@ interface UserItemProps {
 }
 
 export const UserItem = ({ user }: UserItemProps) => {
-	console.log(user);
-
 	const { name, id, website, email, address, picture } = user;
 	const { geo, ...rest } = address;
 	const getLargePicture = picture !== undefined ? picture.large : "";
